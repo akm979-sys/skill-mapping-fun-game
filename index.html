@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skill Mapping Fun Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        h1 {
+            color: #333;
+        }
+        .game-container {
+            border: 2px solid #333;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .skills {
+            list-style-type: none;
+            padding: 0;
+        }
+        .skills li {
+            padding: 8px;
+            background-color: #e0e0e0;
+            margin: 5px 0;
+            border-radius: 3px;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <h1>Skill Mapping Fun Game</h1>
+        <button id="startGame">Start Game</button>
+        <ul id="skills" class="skills"></ul>
+    </div>
+
+    <script>
+        const skills = ["JavaScript", "Python", "Java", "C++", "HTML", "CSS"];
+        const skillsContainer = document.getElementById('skills');
+        const startGameButton = document.getElementById('startGame');
+
+        function startGame() {
+            const selectedSkills = [];
+            while (selectedSkills.length < 3) {
+                const skill = skills[Math.floor(Math.random() * skills.length)];
+                if (!selectedSkills.includes(skill)) {
+                    selectedSkills.push(skill);
+                }
+            }
+            localStorage.setItem('selectedSkills', JSON.stringify(selectedSkills));
+            displaySkills(selectedSkills);
+        }
+
+        function displaySkills(selectedSkills) {
+            skillsContainer.innerHTML = '';
+            selectedSkills.forEach(skill => {
+                const li = document.createElement('li');
+                li.textContent = skill;
+                skillsContainer.appendChild(li);
+            });
+        }
+
+        startGameButton.addEventListener('click', startGame);
+    </script>
+</body>
+</html>
