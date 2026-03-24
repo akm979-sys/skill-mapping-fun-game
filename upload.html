@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Upload & Save</title>
+
+<style>
+button {
+    padding:10px 15px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+#saveBtn {
+    background:gray;
+    color:white;
+}
+
+#saveBtn.active {
+    background:green;
+}
+</style>
+</head>
+
+<body>
+
+<h3>Select Document</h3>
+
+<input type="file" id="fileInput">
+
+<br><br>
+
+<button id="saveBtn" disabled>Save</button>
+
+<script>
+
+let fileInput = document.getElementById("fileInput");
+let saveBtn = document.getElementById("saveBtn");
+
+fileInput.addEventListener("change", function(){
+
+    if(fileInput.files.length > 0){
+        saveBtn.disabled = false;
+        saveBtn.classList.add("active");
+    } else {
+        saveBtn.disabled = true;
+        saveBtn.classList.remove("active");
+    }
+
+});
+
+</script>
+
+</body>
+</html>
